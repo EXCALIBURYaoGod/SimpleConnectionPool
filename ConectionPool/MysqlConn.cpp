@@ -2,7 +2,7 @@
 
 MysqlConn::MysqlConn() {
 	m_conn = mysql_init(nullptr);
-	mysql_set_character_set(m_conn, "uft8");
+	mysql_set_character_set(m_conn, "utf8");
 }
 
 MysqlConn::~MysqlConn()
@@ -74,6 +74,18 @@ bool MysqlConn::rollback()
 {	
 
 	return mysql_rollback(m_conn);
+}
+
+void MysqlConn::refreshAliveTime()
+{
+	m_alivetime = steady_clock::now();
+}
+
+long long MysqlConn::getAliveTime()
+{	
+	nanoseconds res = steady_clock::now() - m_alivetime;
+	milliseconds millsec = duration_cast<milliseconds>(res);
+	return millsec.count();
 }
 
 void MysqlConn::freeResult()

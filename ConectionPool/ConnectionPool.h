@@ -11,11 +11,16 @@ public:
 	static ConnectionPool* getConnectPool();
 	ConnectionPool(const ConnectionPool& obj) = delete;
 	ConnectionPool& operator=(const ConnectionPool& obj) = delete;
+	shared_ptr<MysqlConn> getConnection();
+	~ConnectionPool();
 private:
 
 	//实例对象要求仅创建一个，构造函数应设置为私有
 	ConnectionPool();
 	bool parseJsonFile();	//解析json数据
+	void produceConnection();
+	void recycleConnection();
+	void addConnection();
 
 	string m_ip;	//服务器ip地址
 	string m_user;	//服务器用户名

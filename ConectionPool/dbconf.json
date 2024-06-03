@@ -1,9 +1,9 @@
 {
-    "ip":"192.168.237.131",
+    "ip":"localhost",
     "port":3306,
     "userName" :"root",
-    "password":"root",
-    "dbName" :"testdb",
+    "password":"yaogod990710",
+    "dbName" :"test",
     "minSize":100,
     "maxSize":1024,
     "maxIdleTime":5000,
